@@ -8,17 +8,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CocktailItem from "./CocktailItem";
-import getAllModules from "../api/modules";
 
-const CocktailList = ({cocktails, navigation}) => {
-
+const CocktailList = ({ cocktails, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.cocktails}>
         <FlatList
           data={cocktails}
-          renderItem={({ item }) => <CocktailItem item={item} />}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(cocktail) => cocktail.id.toString()}
+          renderItem={({ item }) => {
+            // <Item title={item.name} />
+            return <CocktailItem cocktail={item} navigation={navigation} />;
+          }}
         ></FlatList>
       </View>
     </View>
